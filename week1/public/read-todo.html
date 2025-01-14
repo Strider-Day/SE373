@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W1 HW reading the json file</title>
+</head>
+<body style="background-color: beige;">
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Completed</th>
+        </thead>
+        <tbody id="jsonContent">
+            
+        </tbody>
+    </table>
+
+    <a href="todo.json">to todo.json</a>
+    <br>
+    <a href="index.html">back to index.html</a>
+
+    <script>
+        fetch('/todo.json')
+            .then(response => response.json())
+            .then(data => {
+                const tableData = document.getElementById('jsonContent');
+                data.forEach(todo => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${todo.id}</td>
+                        <td>${todo.title}</td>
+                        <td>${todo.completed ? 'Yes' : 'No'}</td>`;
+                    tableData.appendChild(row);
+                });
+            })
+
+    </script>
+</body>
+</html>

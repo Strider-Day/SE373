@@ -1,0 +1,15 @@
+{
+  "name": "week1",
+  "version": "1.0.0",
+  "description": "Week 1 Homework",
+  "license": "ISC",
+  "author": "Andrew Rockwell",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
