@@ -43,7 +43,7 @@ module.exports = function(passport){
     passport.serializeUser((user, done)=> done(null, user.id));
     passport.deserializeUser(async (id,done)=>{
         try{
-            const user = await AppUser.findById(id)
+            const user = await AppUser.findById(id).maxTimeMS(5000);
             done(null,user);
         }catch(err){
             done(err)
