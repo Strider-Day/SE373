@@ -12,6 +12,7 @@ const { allowInsecurePrototypeAccess } = require("@handlebars/allow-prototype-ac
 const Handlebars = require("handlebars");
 const { allowedNodeEnviornmentflags } = require("process");
 const employee = require("./models/Employee");
+const mongoURI = process.env.MONGODB_URI;
 
 const app = express();
 const PORT = 3000;
@@ -37,7 +38,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use(session({
-    secret:"secret",
+    secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:true
 }))
@@ -58,7 +59,8 @@ app.use((req, res, next)=>{
 app.use("/", require("./routes/auth").router);
 app.use("/", require("./routes/crud"));
 
-const mongURI = "mongodb://localhost:27017/EMPL"
+//const mongURI = "mongodb://localhost:27017/EMPL"
+const mongURI = process.env.MONGO_URI;
 mongoose.connect(mongURI);
 const db = mongoose.connection;
 
