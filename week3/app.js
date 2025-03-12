@@ -15,7 +15,7 @@ const employee = require("./models/Employee");
 const mongoURI = process.env.MONGODB_URI;
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 require("./config/passport")(passport);
 
@@ -30,7 +30,7 @@ const hbs = exphbs.create({
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
-app.set("views", "./views");
+app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static(path.join(__dirname,"public")));
 
@@ -210,5 +210,7 @@ app.get("/", (req, res)=>{
 });
 
 app.listen(PORT, ()=>{
-    console.log("Server running on Port 3000");
+    console.log(`Server running on Port ${PORT}`);
 });
+
+module.exports = app;
