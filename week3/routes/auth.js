@@ -40,7 +40,7 @@ router.post("/register", async (req,res)=>{
     await newAppUser.save();
 
     req.flash("success_msg", "You are registered")
-    res.redirect("/login");
+    res.render("/login");
 })
 
 router.get("/login", (req, res) => {
@@ -66,7 +66,7 @@ router.get("/logout", (req, res, next) => {
     req.logout((err) => {
         if (err) return next(err);
         req.flash("success_msg", "You Logged out");
-        res.redirect("/login");
+        res.render("/login");
     });
 });
 
